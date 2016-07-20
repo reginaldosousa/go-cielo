@@ -6,12 +6,6 @@ type Merchant struct {
 	ID, Key string
 }
 
-// Environment configuration interface
-type Environment interface {
-	GetApiUrl() string
-	GetQueryApiUrl() string
-}
-
 // Sale is used to create a sale request
 type Sale struct {
 	MerchantOrderID string
@@ -89,6 +83,9 @@ type recurrentInterval string
 type paymentProvider string
 type paymentType string
 type currency string
+type environment struct {
+	APIURL, APIQueryURL string
+}
 
 const (
 	// MonthlyInterval configures recurrent payment interval to Montly
@@ -144,6 +141,19 @@ const (
 	CurrencyVEF = currency("VEF")
 	// CurrencyGBP set current to British Pound
 	CurrencyGBP = currency("GBP")
+)
+
+var (
+	// ProductionEnvironment sets the environment to production
+	ProductionEnvironment = environment{
+		APIURL:      "https://api.cieloecommerce.cielo.com.br/",
+		APIQueryURL: "https://apiquery.cieloecommerce.cielo.com.br/",
+	}
+	// SandboxEnvironment sets the environment to sandbox
+	SandboxEnvironment = environment{
+		APIURL:      "https://apisandbox.cieloecommerce.cielo.com.br/",
+		APIQueryURL: "https://apiquerysandbox.cieloecommerce.cielo.com.br/",
+	}
 )
 
 // CreditCard holds credit card informations
