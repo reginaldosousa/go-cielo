@@ -9,7 +9,7 @@ import (
 	"github.com/satori/go.uuid"
 )
 
-// CieloEcommerce is the interface used to communicate with Cielo v3 API
+// Ecommerce is the interface used to communicate with Cielo v3 API
 type Ecommerce interface {
 	CreateSale(sale Sale) (Sale, error)
 }
